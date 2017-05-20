@@ -22,7 +22,7 @@
   }, false);
 
   // 初始化
-  throttle(refreshRem);
+  refreshRem();
 
   /**
    * 计算字体大小
