@@ -8,7 +8,7 @@
 
 ## 演示
 
-[http://givebest.github.io/gb-respond.html](http://givebest.github.io/gb-respond.html)
+[http://givebest.github.io/gb-respond.html](http://givebest.github.io/GB-respond.html)
 
 ## 使用
 
