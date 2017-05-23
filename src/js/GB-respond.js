@@ -1,6 +1,6 @@
 /**
 * GB-respond.js
-* @see https://github.com/givebest/GB-respond
+* @see https://github.com/givebest/GB-html5-respond
 * @author givenlovs[at]msn.com
 * @(c) 2017
 **/
