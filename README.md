@@ -46,7 +46,7 @@ body {
   width: 3.75rem;
   /** 
   * 750（UI稿宽度） / 100（Html font-size） / 2 = 3.75rem
-  * 加宽度可解决部分 Android 下 webView 中兼容问题（webView 获取设备宽度不准确），如：HUAWEI MT7
+  * 加宽度可解决部分 Android 下 webView 中兼容问题（webView 获取设备宽度小于实际宽度），如：HUAWEI MT7
   * 灵感来源：https://m.taobao.com/#index
   */
 }
