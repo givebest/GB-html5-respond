@@ -38,6 +38,19 @@ body {
 	font-size: .12rem; /* 在 375 屏幕宽相当于 12px */
 }
 
+/* 一级容器，包含页面全部元素 */
+.wrapper {
+  margin: 0 auto;
+  max-width: 640px;
+  min-width: 320px;
+  width: 3.75rem;
+  /** 
+  * 750（UI稿宽度） / 100（Html font-size） / 2 = 3.75rem
+  * 加宽度可解决部分 Android 下 webView 中兼容问题（webView 获取设备宽度不准确），如：HUAWEI MT7
+  * 灵感来源：https://m.taobao.com/#index
+  */
+}
+
 ```
 
 
