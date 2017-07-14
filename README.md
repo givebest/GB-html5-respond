@@ -4,7 +4,7 @@
 ## 简介
 
 移动端响应式布局解决方案、用 `JavaScript` 根据屏幕宽度计算 `Root` 字体大小弥补媒体查询断点断层过大问题，元素单位使用 `REM` 即可基于 `Root` 字体大小来改变自身大小。
-  
+
 
 ## 演示
 
@@ -15,7 +15,7 @@
 ###  HTML
 
 > 在 Head 引入（CSS前面）
-	
+
 ```html	
 <head>
   <!-- 省略 -->
@@ -43,22 +43,34 @@ body {
   margin: 0 auto;
   max-width: 640px;
   min-width: 320px;
-  width: 3.75rem;
-  /** 
-  * 750（UI稿宽度） / 100（Html font-size） / 2 = 3.75rem
-  * 加宽度可解决部分 Android 下 webView 中兼容问题（webView 获取设备宽度小于实际宽度），如：HUAWEI MT7
-  * 灵感来源：https://m.taobao.com/#index
-  */
+  /* width: 3.75rem; */ 
 }
-
 ```
+> 750（UI稿宽度） / 100（Html font-size） / 2 = 3.75rem
+>  ~~加宽度可解决部分 Android 下 webView 中兼容问题（webView 获取设备宽度小于实际宽度），如：HUAWEI MT7~~ 更新解决文案，详见 [JS](#js)
+>  灵感来源：https://m.taobao.com/#index
 
+### JS
 
+> Android 设备 WebView 会因设备设置字体（浏览器默认为 `16px`）大小影响，详情： https://github.com/hbxeagle/rem 。
 
+解决方法如下：
+
+```javascript
+var doc = window.document,
+    docEl = doc.documentElement,
+    defaultFontSize = parseFloat(window.getComputedStyle(docEl, null).getPropertyValue('font-size') || 16),  // 获取 WebView 默认字体大小
+    width = parseFloat(docEl.getBoundingClientRect().width || docEl.clientWidth),
+    fontSize = 100 / designWidth * (width > maxWidth ? maxWidth : width),
+    finalFontSize = (defaultFontSize !== 16) ? (fontSize * (16 / defaultFontSize)) : fontSize;  // WebView 默认字体大小不等于 16px 即设备设置改变了默认字体大小，进行换算正确的大小
+    docEl.style.fontSize = finalFontSize + 'px';   // 为 Html 设置字体大小
+```
 
 ## 感谢他们
 
 参考： [https://github.com/amfe/lib-flexible](https://github.com/amfe/lib-flexible)       
+
+ [https://github.com/hbxeagle/rem](https://github.com/hbxeagle/rem) 
 
 
 

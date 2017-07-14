@@ -7,6 +7,7 @@
 ;(function (win) {
   var doc = win.document,
     docEl = doc.documentElement,
+    defaultFontSize = parseFloat(window.getComputedStyle(docEl, null).getPropertyValue('font-size') || 16),
     designWidth = 750 / 2,   // 设计稿宽度
     maxWidth = 1280 / 2;   // 最大支持宽度（无限制会导致 Pad 等大屏设备展示内容过少、图像失真等）
 
@@ -29,9 +30,12 @@
    * @return {[type]} [description]
    */
   function refreshRem () {
-    var width = docEl.getBoundingClientRect().width || docEl.clientWidth,
-      fontSize = 100 / designWidth * (width > maxWidth ? maxWidth : width) + 'px';
-      docEl.style.fontSize = fontSize;
+    var width = parseFloat(docEl.getBoundingClientRect().width || docEl.clientWidth),
+      fontSize = 100 / designWidth * (width > maxWidth ? maxWidth : width),
+      // Android webView 会被设备字体大小(默认为16px)影响 @see https://github.com/hbxeagle/rem 
+      finalFontSize = (defaultFontSize !== 16) ? (fontSize * (16 / defaultFontSize)) : fontSize;
+      console.log(finalFontSize)
+      docEl.style.fontSize = finalFontSize + 'px';
   }
 
   /**
